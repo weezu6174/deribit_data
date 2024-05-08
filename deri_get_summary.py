@@ -26,7 +26,9 @@ async def call_api(msg):
            # do something with the response...
             return response
 
-json = asyncio.get_event_loop().run_until_complete(call_api(json.dumps(msg)))
+res = asyncio.get_event_loop().run_until_complete(call_api(json.dumps(msg)))
+
 #%%
-print(json)
+json_object = json.loads(res)
+summary_df = pd.json_normalize(json_object['result'])
 # %%
